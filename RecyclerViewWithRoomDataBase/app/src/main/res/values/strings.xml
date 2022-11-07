@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">RoomDataBaseApplication_New</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="user_id">User Id</string>
+    <string name="my_work_type">Work Type</string>
+    <string name="work_done_list">Work Done List</string>
+    <string name="home">Home</string>
+
+</resources>
