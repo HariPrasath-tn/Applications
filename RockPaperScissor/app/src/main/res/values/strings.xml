@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">RockPaperScissor</string>
+    <string name="want_to_move_next_activity">Want to move next activity ?</string>
+    <string name="click_here">Click here</string>
+    <string name="computer_choice">Computer choice</string>
+    <string name="you">You</string>
+    <string name="result">Result</string>
+    <string name="text_result">Text Result</string>
+    <string name="play_again">Play Again</string>
+    <string name="computer_choice1">computer Choice</string>
+    <string name="desc_rock_choice">Desc: rock choice</string>
+    <string name="desc_paper_choice">Desc: Paper choice</string>
+    <string name="desc_scissor_choice">Desc: scissor choice</string>
+    <string name="desc_game_result">Desc: Game Result</string>
+</resources>

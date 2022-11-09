@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".RPSActivity">
+
+        <ImageView
+            android:contentDescription="@string/computer_choice1"
+            android:id="@+id/pcChoice"
+            android:layout_width="143dp"
+            android:layout_height="110dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2"
+            tools:srcCompat="@drawable/pc" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="210dp"
+            android:layout_height="33dp"
+            android:layout_marginTop="28dp"
+            android:text="@string/want_to_move_next_activity"
+            android:textSize="16sp"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.194"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="125dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="36dp"
+            android:backgroundTint="#3BFFFFFF"
+            android:text="@string/click_here"
+            android:textAllCaps="false"
+            android:textColor="#100F0F"
+            android:textSize="12sp"
+            android:textStyle="bold|italic"
+            app:layout_constraintBottom_toBottomOf="@+id/textView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/textView" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="158dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="36dp"
+            android:text="@string/computer_choice"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/you"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pcChoice" />
+
+        <ImageView
+            android:id="@+id/rock"
+            android:layout_width="98dp"
+            android:layout_height="100dp"
+            android:layout_marginEnd="64dp"
+            android:contentDescription="@string/desc_rock_choice"
+            android:onClick="beginGame"
+            app:layout_constraintBottom_toBottomOf="@+id/paper"
+            app:layout_constraintEnd_toStartOf="@+id/textView3"
+            app:layout_constraintHorizontal_bias="0.516"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/rock" />
+
+        <ImageView
+            android:id="@+id/paper"
+            android:layout_width="108dp"
+            android:layout_height="102dp"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="8dp"
+            android:contentDescription="@string/desc_paper_choice"
+            android:onClick="beginGame"
+            app:layout_constraintStart_toEndOf="@+id/rock"
+            app:layout_constraintTop_toBottomOf="@+id/textView3"
+            app:srcCompat="@drawable/paper" />
+
+        <ImageView
+            android:id="@+id/scissor"
+            android:layout_width="108dp"
+            android:layout_height="102dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="20dp"
+            android:contentDescription="@string/desc_scissor_choice"
+            android:onClick="beginGame"
+            app:layout_constraintBottom_toBottomOf="@+id/paper"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/paper"
+            app:srcCompat="@drawable/scissor" />
+
+        <TextView
+            android:id="@+id/resultInfo"
+            android:layout_width="87dp"
+            android:layout_height="29dp"
+            android:layout_marginTop="116dp"
+            android:text="@string/result"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.194"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/paper" />
+
+        <ImageView
+            android:id="@+id/resultView"
+            android:contentDescription="@string/desc_game_result"
+            android:layout_width="147dp"
+            android:layout_height="132dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="48dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.24"
+            app:layout_constraintStart_toEndOf="@+id/resultInfo"
+            app:layout_constraintTop_toBottomOf="@+id/paper"
+            app:layout_constraintVertical_bias="0.131"
+            app:srcCompat="@drawable/win" />
+
+        <TextView
+            android:id="@+id/result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_result"
+            android:textSize="18sp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.142"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/resultView"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <Button
+            android:id="@+id/restart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:backgroundTint="#F34141"
+            android:onClick="restartGame"
+            android:text="@string/play_again"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/result"
+            app:layout_constraintVertical_bias="0.0" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
