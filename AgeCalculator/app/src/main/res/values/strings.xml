@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Age Calculator</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="age_calculator">Age Calculator</string>
+    <string name="date_of_birth">Date OF Birth</string>
+    <string name="age_at_date">Age At Date</string>
+</resources>
