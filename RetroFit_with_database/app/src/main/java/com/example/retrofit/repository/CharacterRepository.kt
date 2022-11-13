@@ -1,10 +1,8 @@
 package com.example.retrofit.repository
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.Transformations
 import com.example.retrofit.database.AnimeCharacter
 import com.example.retrofit.database.CharacterDatabase
-import com.example.retrofit.database.asDomainModel
 import com.example.retrofit.network.ApiClient
 import com.example.retrofit.network.asDatabaseModel
 import kotlinx.coroutines.Dispatchers
@@ -29,7 +27,7 @@ class CharacterRepository (private val database: CharacterDatabase) {
      *      data class AnimeCharacter, then assigned to the variable
      *
      */
-    val characters: List<AnimeCharacter> = database.characterDAO.getAllCharacter()
+    val characters: LiveData<List<AnimeCharacter>> = database.characterDAO.getAllCharacter()
 
 
     /**
@@ -45,9 +43,15 @@ class CharacterRepository (private val database: CharacterDatabase) {
     suspend fun refreshCharacter() {
         withContext(Dispatchers.IO) {
             try {
-                val characters = ApiClient.apiService.fetchCharacters("1").await()
-                database.characterDAO.insertAll(*characters.asDatabaseModel())
-            }catch (ignored:Exception){}
+                var page = 1
+                while (true) {
+                    val characters = ApiClient.apiService.fetchCharacters("${page++}").await().results
+                    print("\n\n\n$characters")
+                    database.characterDAO.insertAll(*characters.asDatabaseModel())
+                }
+            }catch (ignored:Exception){
+                println("\n\n\n\n\n${ignored.message}")
+            }
         }
     }
 }

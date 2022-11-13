@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/weather_navigator"
+    app:startDestination="@id/locationListFragment">
+
+    <fragment
+        android:id="@+id/locationListFragment"
+        android:name="com.rio.worldweather.view.weather_fragments.LocationListFragment"
+        android:label="fragment_location_list"
+        tools:layout="@layout/fragment_location_list" >
+        <action
+            android:id="@+id/action_locationListFragment_to_mapsFragment"
+            app:destination="@id/mapsFragment" />
+        <action
+            android:id="@+id/action_locationListFragment_to_detailedWeatherFragment"
+            app:destination="@id/detailedWeatherFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailedWeatherFragment"
+        android:name="com.rio.worldweather.view.weather_fragments.DetailedWeatherFragment"
+        android:label="fragment_detailed_weather"
+        tools:layout="@layout/fragment_detailed_weather" >
+        <argument
+            android:name="lat"
+            app:argType="string" />
+        <argument android:name="lon"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="com.rio.worldweather.view.weather_fragments.MapsFragment"
+        android:label="fragment_maps"
+        tools:layout="@layout/fragment_maps" />
+</navigation>

@@ -54,15 +54,21 @@ abstract class CharacterDatabase : RoomDatabase() {
 }
 
 
-/**
- * List<AnimeCharacter>.asDomainModel() is a method that maps the list value to the data class
- * AnimeCharacter
- */
-fun List<AnimeCharacter>.asDomainModel(): List<AnimeCharacter> {
-    return map {
-        AnimeCharacter(
-            name=it.name,
-            image = it.image
-        )
-    }
-}
+///**
+// * List<AnimeCharacter>.asDomainModel() is a method that maps the list value to the data class
+// * AnimeCharacter
+// */
+//fun List<AnimeCharacter>.asDomainModel(): List<AnimeCharacter> {
+//    return map {
+//        AnimeCharacter(
+//            id = it.id.toString(),
+//            name = it.name,
+//            image = it.image,
+//            aliveStatus = it.status,
+//            location = it.location.name,
+//            species = it.species,
+//            origin = it.origin.name,
+//            gender = it.gender
+//        )
+//    }
+//}

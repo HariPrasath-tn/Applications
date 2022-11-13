@@ -1,5 +1,6 @@
 package com.example.retrofit.network
 
+import com.example.retrofit.network.data_class.NAnimeCharacter
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Call
@@ -46,5 +47,5 @@ object ApiClient {
  */
 interface ApiService{
     @GET("character")
-    fun fetchCharacters(@Query("page") page:String):Call<CharacterResponse>
+    fun fetchCharacters(@Query("page") page:String):Call<NAnimeCharacter>
 }

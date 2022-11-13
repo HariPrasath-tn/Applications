@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/news_navigator"
+    app:startDestination="@id/weatherNewsFragment">
+
+    <fragment
+        android:id="@+id/weatherNewsFragment"
+        android:name="com.rio.worldweather.view.news_fragments.WeatherNewsFragment"
+        android:label="fragment_weather_news"
+        tools:layout="@layout/fragment_weather_news" >
+        <action
+            android:id="@+id/action_weatherNewsFragment_to_detailedNewsFragment"
+            app:destination="@id/detailedNewsFragment" />
+        <argument
+            android:name="newsUrl"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailedNewsFragment"
+        android:name="com.rio.worldweather.view.news_fragments.DetailedNewsFragment"
+        android:label="fragment_detailed_news"
+        tools:layout="@layout/fragment_detailed_news" >
+        <argument
+            android:name="newsUrl"
+            app:argType="string" />
+    </fragment>
+</navigation>

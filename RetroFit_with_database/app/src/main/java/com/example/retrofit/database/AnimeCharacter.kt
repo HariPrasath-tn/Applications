@@ -30,6 +30,12 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "character")
 data class AnimeCharacter(
     @PrimaryKey
-    var name: String,
-    val image: String
+    val id:String,
+    val name: String,
+    val image: String,
+    val aliveStatus:String,
+    val species:String,
+    val gender:String,
+    val origin:String,
+    val location:String,
 )

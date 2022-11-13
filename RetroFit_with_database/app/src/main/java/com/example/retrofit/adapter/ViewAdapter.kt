@@ -1,14 +1,12 @@
 package com.example.retrofit.adapter
 
-import android.content.Context
-import android.transition.CircularPropagation
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
-import androidx.cardview.widget.CardView
+import androidx.recyclerview.widget.AsyncListDiffer
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.transform.CircleCropTransformation
@@ -31,15 +29,20 @@ import com.example.retrofit.database.AnimeCharacter
  *      returned to the recycler view
  *
  */
-class ViewAdapter(private val context:Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
-    /**
-     * items is the instance variable that stores the list of items from the activity/fragment
-     */
-    var items:List<AnimeCharacter> = listOf()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
+class ViewAdapter(private val interaction:Interaction? = null) :
+RecyclerView.Adapter<RecyclerView.ViewHolder>(){
+
+    private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<AnimeCharacter>(){
+        override fun areItemsTheSame(oldItem:AnimeCharacter, newITem:AnimeCharacter):Boolean {
+            return oldItem.name == newITem.name
         }
+
+        override fun areContentsTheSame(oldItem:AnimeCharacter, newITem:AnimeCharacter):Boolean {
+            return oldItem == newITem
+        }
+    }
+
+    private val differ = AsyncListDiffer(this, DIFF_CALLBACK)
 
     /**
      * onCreate is an override method of the class RecyclerView.Adapter
@@ -51,7 +54,8 @@ class ViewAdapter(private val context:Context) : RecyclerView.Adapter<RecyclerVi
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return ViewHolder(
-            LayoutInflater.from(context).inflate(R.layout.recycler_view_item, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.recycler_view_item, parent, false),
+            interaction
         )
     }
 
@@ -59,18 +63,18 @@ class ViewAdapter(private val context:Context) : RecyclerView.Adapter<RecyclerVi
      * onBindViewHolder is an override method of the class RecyclerView.Adapter
      *
      * Methodology:
-     *      binds the list of items with the viewHolders
-     *
-     *      here holder's are verified for the user defined ViewHolder class
+     *      -> binds the list of items with the viewHolders
+     *      -> here holder's are verified for the user defined ViewHolder class
      *      as the parameter is of increased scope
-     *
+     *      -> binds onClickListener to the view
      */
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if(holder is ViewHolder){
-            holder.textView.text = items[position].name
-            holder.imageView.load(items[position].image){
+            holder.textView.text = differ.currentList[position].name
+            holder.imageView.load(differ.currentList[position].image){
                 transformations(CircleCropTransformation())
             }
+            holder.bind(differ.currentList[position])
         }
     }
 
@@ -79,7 +83,15 @@ class ViewAdapter(private val context:Context) : RecyclerView.Adapter<RecyclerVi
      *
      * returns the count of the elements in the items list
      */
-    override fun getItemCount(): Int = items.size
+    override fun getItemCount(): Int = differ.currentList.size
+
+
+    /**
+     * [submitList] is the function that submits the list to the Differ
+     */
+    fun submitList(list:List<AnimeCharacter>){
+        differ.submitList(list)
+    }
 
     /**
      * class ViewHolder is an user defined class that extends the ViewHolder class of RecyclerView
@@ -87,8 +99,27 @@ class ViewAdapter(private val context:Context) : RecyclerView.Adapter<RecyclerVi
      * Methodology:
      *      it binds layout components with the instance variable
      */
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view){
-        val textView:TextView = view.findViewById(R.id.myTextView)
-        val imageView:ImageView = view.findViewById(R.id.myImageView)
+    class ViewHolder(
+        itemView: View,
+        private val interaction: Interaction?
+    ): RecyclerView.ViewHolder(itemView){
+        /**
+         * [bind] is the method that sets the onclick listener to the itemView
+         * @param item of type AnimeCharacter representing current dataset in the list
+         */
+        fun bind(item:AnimeCharacter) {
+            itemView.setOnClickListener {
+                interaction?.onItemSelected(adapterPosition, item)
+            }
+        }
+        val textView:TextView = itemView.findViewById(R.id.myTextView)
+        val imageView:ImageView = itemView.findViewById(R.id.myImageView)
+    }
+
+    /**
+     * [Interaction] is an interface providing method that are responsive to view onClick
+     */
+    interface  Interaction{
+        fun onItemSelected(position:Int, item:AnimeCharacter)
     }
 }

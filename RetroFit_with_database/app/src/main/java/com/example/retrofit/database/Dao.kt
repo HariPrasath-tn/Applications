@@ -29,7 +29,7 @@ import androidx.room.Query
 @Dao
 interface CharacterDAO {
     @Query("Select * from character")
-    fun getAllCharacter(): List<AnimeCharacter>
+    fun getAllCharacter(): LiveData<List<AnimeCharacter>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(vararg params:AnimeCharacter)
