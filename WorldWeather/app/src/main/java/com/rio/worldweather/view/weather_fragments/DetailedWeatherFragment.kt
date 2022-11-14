@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.navArgs
 import coil.load
 import com.rio.worldweather.R
 import com.rio.worldweather.databinding.FragmentDetailedWeatherBinding
@@ -39,7 +40,8 @@ class DetailedWeatherFragment : Fragment() {
                 detailedWeatherMiddle.weatherViewModel = it
             }
         }
-
+        val args : DetailedWeatherFragmentArgs by navArgs()
+        detailedWeatherViewModel.fetchWeatherFor(args.lat, args.lon)
         detailedWeatherViewModel.imageUrl.observe(viewLifecycleOwner, Observer {
             binding.detailedWeatherTop.weatherIv.load(it.toString())
         })

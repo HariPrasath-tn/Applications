@@ -30,9 +30,11 @@ class DetailedWeatherViewModel(private val context: Context): ViewModel() {
             pressure.value = it
             uvReadings.value = it
         }
+    }
 
+    fun fetchWeatherFor(lat:String, lon:String){
         CoroutineScope(Job()).launch {
-            var tempVariable = repository.fetchWeatherData("12.5830", "80.05326").data[0]
+            var tempVariable = repository.fetchWeatherData(lat, lon).data[0]
             weather.postValue(tempVariable)
             temp.postValue(tempVariable.app_temp.toString()+"°")
             windSpeed.postValue(tempVariable.wind_spd.toString())
@@ -49,6 +51,6 @@ class DetailedWeatherViewModel(private val context: Context): ViewModel() {
             uvReadings.postValue(tempVariable.uv.toString())
             imageUrl.postValue("https://www.weatherbit.io/static/img/icons/${tempVariable.weather.icon}.png")
         }
-
     }
+
 }

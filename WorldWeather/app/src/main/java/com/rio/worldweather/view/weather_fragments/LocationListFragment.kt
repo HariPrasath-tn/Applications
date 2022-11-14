@@ -94,7 +94,7 @@ class LocationListFragment : Fragment(),LocationListAdapter.LocationListInteract
      * current position in the recycler view
      */
     override fun onViewClicked(view:View, item: DatabaseLocation) {
-       Navigation.findNavController(view).navigate(R.id.action_locationListFragment_to_detailedWeatherFragment)
+       Navigation.findNavController(view).navigate(LocationListFragmentDirections.actionLocationListFragmentToDetailedWeatherFragment(item.lat, item.lon))
     }
 
     /**

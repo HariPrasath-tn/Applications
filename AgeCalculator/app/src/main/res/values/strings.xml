@@ -5,4 +5,6 @@
     <string name="age_calculator">Age Calculator</string>
     <string name="date_of_birth">Date OF Birth</string>
     <string name="age_at_date">Age At Date</string>
+    <string name="current_data">current data</string>
+    <string name="select_date">Select Date</string>
 </resources>

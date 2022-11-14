@@ -62,7 +62,7 @@ class ContentViewFragmentViewModel(private val database:AttendanceListDAO, appli
 
     @Suppress
     private fun convertLongToDateString(systemTime:Long):String {
-        return SimpleDateFormat("EEEE MMM-dd-yyyy ' \n\t\tTime: ' HH:mm").format(systemTime).toString()
+        return SimpleDateFormat("EEEE MM-dd-yyyy ' \n\t\tTime: ' HH:mm").format(systemTime).toString()
     }
     private suspend fun getTodayAttendanceList():List<AttendanceList>{
         return withContext(Dispatchers.IO){
