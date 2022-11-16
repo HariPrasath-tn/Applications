@@ -9,7 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.retrofit.R
 import com.example.retrofit.databinding.FragmentHomeBinding
-import com.example.retrofit.overview.HomeViewModel
+import com.example.retrofit.model_view.HomeViewModel
 
 class HomeFragment : Fragment() {
     private lateinit var binding:FragmentHomeBinding

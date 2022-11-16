@@ -28,7 +28,7 @@ class LocationListAdapter(private val interaction:LocationListInteraction? = nul
     private val differ = AsyncListDiffer(this, DIFF_CALLBACK)
 
     /**
-     * onCreate is an override method of the class RecyclerView.Adapter
+     * [onCreateViewHolder] is an override method of the class RecyclerView.Adapter
      *
      * Methodology:
      *      creates the instance of the viewHolder class
@@ -43,7 +43,7 @@ class LocationListAdapter(private val interaction:LocationListInteraction? = nul
     }
 
     /**
-     * onBindViewHolder is an override method of the class RecyclerView.Adapter
+     * [onBindViewHolder] is an override method of the class RecyclerView.Adapter
      *
      * Methodology:
      *      -> binds the list of items with the viewHolders
@@ -59,7 +59,7 @@ class LocationListAdapter(private val interaction:LocationListInteraction? = nul
     }
 
     /**
-     * getItemCount is an override method of the class RecyclerView.Adapter
+     * [getItemCount] is an override method of the class RecyclerView.Adapter
      *
      * returns the count of the elements in the items list
      */
@@ -74,7 +74,7 @@ class LocationListAdapter(private val interaction:LocationListInteraction? = nul
     }
 
     /**
-     * class ViewHolder is an user defined class that extends the ViewHolder class of RecyclerView
+     * class [ViewHolder] is an user defined class that extends the ViewHolder class of RecyclerView
      *  Constructor of this class takes object of the class View
      * Methodology:
      *      it binds layout components with the instance variable

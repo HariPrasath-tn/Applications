@@ -8,13 +8,13 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 object WeatherApiClient {
-    /**
+    /*
      * base url
      * https://api.weatherbit.io/v2.0/current?lat=12.03093&lon=32.32423&key=532e61560fc8468bb9fda40e97b4856c
      */
     private const val BASE_URL = "https://api.weatherbit.io/v2.0/"
 
-    /**
+    /*
      * creating the instance of the retrofit as lazy
      */
     private val retrofit: Retrofit by lazy{
@@ -32,7 +32,7 @@ object WeatherApiClient {
 }
 
 /**
- * Below object class lets create an interface to define how Retrofit talks to the service using the GetMethod
+ * [WeatherApiService] interface to define how Retrofit talks to the service using the GetMethod
  */
 interface WeatherApiService{
     /**

@@ -1,6 +1,8 @@
 package com.example.retrofit.network
 
 import com.squareup.moshi.Json
+
+
 data class Character (
     @Json(name = "name")
     var name: String,
