@@ -17,6 +17,7 @@ class LocationListViewModel(val context:Context) :  ViewModel(){
     private val weatherWorldRepository = WeatherWorldRepository.getInstance(this, database)
     private val job = Job()
     private val uiScope = CoroutineScope(job)
+    val city = MutableLiveData<DatabaseLocation>()
 
     init{
         // launches the coroutine to fetch the data from the database
@@ -37,5 +38,21 @@ class LocationListViewModel(val context:Context) :  ViewModel(){
             weatherWorldRepository.deleteThis(location.cityName)
         }
     }
+
+    /**
+    * [getCity] is the method that initializes the city search in api using given coordinates
+    *
+    * @param lat of type String representing latitude of the place
+    * @param lon of type String representing longitude of the place
+    * @return unit
+    */
+    fun getCity(lat:String, lon:String){
+        uiScope.launch {
+            var data = weatherWorldRepository.fetchWeatherData(lat, lon).data[0]
+            city.postValue(DatabaseLocation(data.city_name, data.lat.toString(), data.lon.toString()))
+
+        }
+    }
+
 
 }

@@ -1,17 +1,23 @@
 package com.rio.worldweather.view.weather_fragments
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.gms.location.*
+import com.google.android.gms.maps.model.LatLng
 import com.rio.worldweather.R
 import com.rio.worldweather.databinding.FragmentLocationListBinding
 import com.rio.worldweather.model.database.Database
@@ -67,7 +73,6 @@ class LocationListFragment : Fragment(),LocationListAdapter.LocationListInteract
                 }
             }
         }
-
         initRecyclerView()
 
 
