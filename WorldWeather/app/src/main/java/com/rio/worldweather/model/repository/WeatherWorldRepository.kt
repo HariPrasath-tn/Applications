@@ -34,6 +34,7 @@ class WeatherWorldRepository private constructor(private val database:Database) 
      * [fetchWeatherData] suspended method fetchWeatherData fetch the current weather data
      */
     suspend fun fetchWeatherData(lat:String, lon:String): Weather {
+        print("Test")
         return withContext(Dispatchers.IO) {
             WeatherApiClient.weatherApiService.fetchAll(lat, lon).await()
         }

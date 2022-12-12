@@ -43,6 +43,6 @@ interface WeatherApiService{
     fun fetchAll(
         @Query("lat") lat:String,
         @Query("lon")lon:String,
-        @Query("key")key:String="532e61560fc8468bb9fda40e97b4856c"
+        @Query("key")key:String="42c17f123fd94598894f31a5caa0f170"
     ): Call<Weather>
 }

@@ -3,6 +3,7 @@ package com.rio.worldweather.view.weather_fragments
 import androidx.fragment.app.Fragment
 
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,6 +20,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.rio.worldweather.R
+import com.rio.worldweather.databinding.ActivityFooterBinding.inflate
 import com.rio.worldweather.databinding.FragmentMapsBinding
 import com.rio.worldweather.model.database.DatabaseLocation
 import com.rio.worldweather.view_model.FMapViewModelFactory
@@ -54,6 +56,15 @@ class MapsFragment : Fragment(), GoogleMap.OnMapClickListener,
 
         binding.lifecycleOwner?.let {
             mapViewModel.staredCitiesLocation.observe(it, Observer { it2->
+
+                // info new user
+                if(it2.isEmpty()){
+                    val toast = Toast(requireActivity().applicationContext)
+                    toast.duration = Toast.LENGTH_LONG
+                    toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0)
+                    toast.view = layoutInflater.inflate(R.layout.toast_layout, requireActivity().findViewById(R.id.toastLayout))
+                    toast.show()
+                }
 
                 for(city in it2){
                     mMap.addMarker(MarkerOptions().position(LatLng(city.lat.toDouble(), city.lon.toDouble())).title(city.cityName))
@@ -95,6 +106,7 @@ class MapsFragment : Fragment(), GoogleMap.OnMapClickListener,
         }
         binding.lifecycleOwner = this
         mapViewModel.fetchCitiesFromDB()
+
         return binding.root
     }
 
@@ -125,13 +137,13 @@ class MapsFragment : Fragment(), GoogleMap.OnMapClickListener,
                 var city = it.cityName
                 marker?.title = city
                 binding.actionBar.visibility = View.VISIBLE
-                mapViewModel.staredCities.observe(binding.lifecycleOwner!!, Observer {
+                mapViewModel.staredCities.observe(binding.lifecycleOwner!!){
                     if(mapViewModel.staredCities.value?.contains(city) == true){
                         setViewForFav()
                     }else {
                         setViewForNotFav()
                     }
-                })
+                }
 
             })
         }

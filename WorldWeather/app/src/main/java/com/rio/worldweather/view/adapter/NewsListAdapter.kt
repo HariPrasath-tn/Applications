@@ -3,7 +3,6 @@ package com.rio.worldweather.view.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.AsyncListDiffer
@@ -11,7 +10,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.rio.worldweather.R
-import com.rio.worldweather.model.network.news.Article
+import com.rio.worldweather.model.network.new_news.Article
 
 class NewsListAdapter(private val interaction: NewsListInteraction? = null) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>(){
@@ -95,13 +94,13 @@ class NewsListAdapter(private val interaction: NewsListInteraction? = null) :
                 }
             }
             item.title = headLineString
-            newsImage.load(item.imageUrl)
+            newsImage.load(item.urlToImage)
             headline.text = item.title
-            source.text = item.source
-            language.text = if(item.lang == "en"){
-                "English"
+            source.text = item.source.name
+            language.text = if(item.author in listOf("", " ", null)){
+                "No author"
             }else{
-                item.lang
+                item.author
             }
             // load news button will redirect the application to the news webView
             loadNewsButton.setOnClickListener {
